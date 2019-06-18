@@ -5,7 +5,7 @@ On Chromebook.
 
 Open a shell (Ctrl+Alt+T, type "shell" no quotes and hit enter).
 _______________________________________________________
-###Download crouton and install to bin###
+###Download crouton and install to bin
 _______________________________________________________
 sudo mkdir /usr/local/bin
 
