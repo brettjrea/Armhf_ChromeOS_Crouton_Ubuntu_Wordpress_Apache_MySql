@@ -15,7 +15,7 @@ _______________________________________________________
 _______________________________________________________
 sudo crouton -r bionic -d -f ~/Downloads/mybootstrap.tar.bz2 (dl bootstrap)
 -------------------------------------------------------
-###Autostart Crouton when Chromebook starts###
+###Autostart Crouton when Chromebook starts
 ------------------------------------------------------
 sudo cp ~/Downloads/crouton.conf /etc/init/
 
