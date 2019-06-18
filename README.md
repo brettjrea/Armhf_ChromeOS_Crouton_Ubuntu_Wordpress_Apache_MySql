@@ -45,7 +45,6 @@ sudo edit-chroot -b bionic -f ~/Downloads/ (backup)
 
 sudo edit-chroot -f ~/Downloads/ -r bionic
 (restore)
-
 --------------------------------------------------------
 
 
