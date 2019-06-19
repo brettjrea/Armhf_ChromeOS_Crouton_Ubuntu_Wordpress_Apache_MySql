@@ -16,15 +16,9 @@ Type `shell` hit enter.
 
 `sudo curl -L -# -o /usr/local/bin/crouton https://github.com/dnschneid/crouton/raw/master/installer/crouton && sudo chmod +x /usr/local/bin/crouton`
 
-## Download Ubuntu 18.04 release name BIONIC and create a bootstrap to save time.
+## Download and save Ubuntu 18.04 release name BIONIC and create a bootstrap to save time on reinstalls.
 
-`sudo crouton -r bionic -d -f ~/Downloads/mybootstrap.tar.bz2` (dl bootstrap)
-
-## Autostart Crouton when Chromebook starts
-
-`sudo cp ~/Downloads/crouton.conf /etc/init/`
-
-`sudo cp ~/Downloads/crouton.init /usr/local/`
+`sudo crouton -r bionic -d -f ~/Downloads/mybootstrap.tar.bz2`
 
 ## Install enough system to create a user and password, and install some needed software, install additional needed targets.
 
@@ -42,11 +36,17 @@ Type `shell` hit enter.
 
 `sudo crouton -n bionic -T ~/Downloads/wp -u`
 
-## Backup & Restore
+## Autostart Crouton when Chromebook starts by copying these files into ChromeOS.
 
-`sudo edit-chroot -b bionic -f ~/Downloads/` (backup)
+`sudo cp ~/Downloads/crouton.conf /etc/init/`
 
+`sudo cp ~/Downloads/crouton.init /usr/local/`
+
+## Backup
+
+`sudo edit-chroot -b bionic -f ~/Downloads/`
+
+## Restore
 `sudo edit-chroot -f ~/Downloads/ -r bionic`
-(restore)
 
 
