@@ -1,6 +1,6 @@
 # Chromebook-Crouton-Ubuntu-18.04-LAMP
 Instructions and files for an Ubuntu 18.04 based LAMP stack for crouton.
-Created from a need to have a development environment on a chromebook with ARM processor, but should work anywhere crouton does.
+Created from a desire to have a development environment on a chromebook with ARM processor, but should work anywhere crouton does.
 
 ## The following instructions are written and depend on the repositories files being found in the ~/Downloads folder.
 
@@ -37,9 +37,6 @@ Type `shell` hit enter.
 #### Install LAMP target.
 
 `sudo crouton -n bionic -T ~/Downloads/lamp -u`
-
-#### Install WordPress target.
-`sudo crouton -n bionic -T ~/Downloads/wp -u`
 
 ### Autostart Crouton when Chromebook starts by copying these files into ChromeOS.
 
