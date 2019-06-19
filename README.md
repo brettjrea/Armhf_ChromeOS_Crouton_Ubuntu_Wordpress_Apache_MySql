@@ -7,6 +7,7 @@ Created from a need to have a development environment on a chromebook with arm p
 On Chromebook.
 
 Press Ctrl+Alt+T to enter terminal.
+
 Type "shell" without the quotes and hit enter.
 
 ## Download crouton and install to bin
