@@ -1,10 +1,8 @@
 # Chromebook-Crouton-Ubuntu-18.04-LAMP-WP
 Ubuntu 18.04 based LAMP stack for crouton with optional WordPress target.
-Created from a need to have a development environment on a chromebook with arm processor.
+Created from a need to have a development environment on a chromebook with ARM processor, but should work anywhere crouton does.
 
 ### Open terminal and enter shell.
-
-On Chromebook.
 
 Press `Ctrl+Alt+T` to enter terminal.
 
@@ -31,13 +29,14 @@ Type `shell` hit enter.
 #### Install some basic software while in crouton and exit.
 `sudo apt install xterm xinit`
 
-#### Install additional base targets.
+#### Install additional targets.
 `sudo crouton -n bionic -t xiwi,extension,keyboard -u`
 
-### Install LAMP target and optional WP target.
+#### Install LAMP target.
 
 `sudo crouton -n bionic -T ~/Downloads/lamp -u`
 
+#### Install WordPress target.
 `sudo crouton -n bionic -T ~/Downloads/wp -u`
 
 ### Autostart Crouton when Chromebook starts by copying these files into ChromeOS.
