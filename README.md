@@ -26,9 +26,9 @@ Type `shell` hit enter.
 #### Enter Crouton.
 `sudo enter-chroot -n bionic`
 
-When prompted create username and password.
+*When prompted create a username and password.*
 
-#### Install some basic software while in system and exit.
+#### Install some basic software while in crouton and exit.
 `sudo apt install xterm xinit`
 
 #### Install additional base targets.
