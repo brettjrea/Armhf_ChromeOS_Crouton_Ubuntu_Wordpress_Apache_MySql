@@ -44,6 +44,16 @@ Type `shell` hit enter.
 
 `sudo cp ~/Downloads/crouton.init /usr/local/`
 
+#### Add Common Alias to bash file.
+`sudo nano ~/.bashrc`
+```
+alias bionic="sudo enter-chroot -n bionic"
+
+alias putty="sudo startxiwi -n bionic -T putty"
+
+alias filezilla="sudo startxiwi -n bionic -T filezilla"
+```
+
 #### Backup
 
 `sudo edit-chroot -b bionic -f ~/Downloads/`
