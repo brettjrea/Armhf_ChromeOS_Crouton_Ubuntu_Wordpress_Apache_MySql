@@ -6,9 +6,9 @@ Created from a need to have a development environment on a chromebook with arm p
 
 On Chromebook.
 
-`Press Ctrl+Alt+T to enter terminal.`
+Press `Ctrl+Alt+T` to enter terminal.
 
-`Type "shell" without the quotes and hit enter.`
+Type `shell` hit enter.
 
 ## Download crouton and install to bin
 
@@ -18,35 +18,35 @@ On Chromebook.
 
 ## Download Ubuntu 18.04 release name BIONIC and create a bootstrap to save time.
 
-`sudo crouton -r bionic -d -f ~/Downloads/mybootstrap.tar.bz2 (dl bootstrap)`
+`sudo crouton -r bionic -d -f ~/Downloads/mybootstrap.tar.bz2` (dl bootstrap)
 
 ## Autostart Crouton when Chromebook starts
 
 `sudo cp ~/Downloads/crouton.conf /etc/init/`
 
-sudo cp ~/Downloads/crouton.init /usr/local/
+`sudo cp ~/Downloads/crouton.init /usr/local/`
 
 ## Install enough system to create a user and password, and install some needed software, install additional needed targets.
 
-sudo crouton -f ~/Downloads/mybootstrap.tar.bz2 -t core,audio,cli-extra
+`sudo crouton -f ~/Downloads/mybootstrap.tar.bz2 -t core,audio,cli-extra`
 
-sudo enter-chroot -n bionic
+`sudo enter-chroot -n bionic`
 
-sudo apt install xterm xinit g++
+`sudo apt install xterm xinit`
 
-sudo crouton -n bionic -t xiwi,extension,keyboard -u
+`sudo crouton -n bionic -t xiwi,extension,keyboard -u`
 
 ## Install LAMP target and optional WP target.
 
-sudo crouton -n bionic -T ~/Downloads/lamp -u
+`sudo crouton -n bionic -T ~/Downloads/lamp -u`
 
-sudo crouton -n bionic -T ~/Downloads/wp -u
+`sudo crouton -n bionic -T ~/Downloads/wp -u`
 
 ## Backup & Restore
 
-sudo edit-chroot -b bionic -f ~/Downloads/ (backup)
+`sudo edit-chroot -b bionic -f ~/Downloads/` (backup)
 
-sudo edit-chroot -f ~/Downloads/ -r bionic
+`sudo edit-chroot -f ~/Downloads/ -r bionic`
 (restore)
 
 
