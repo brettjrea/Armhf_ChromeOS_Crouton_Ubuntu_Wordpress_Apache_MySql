@@ -6,23 +6,23 @@ Created from a need to have a development environment on a chromebook with arm p
 
 On Chromebook.
 
-Press Ctrl+Alt+T to enter terminal.
+`Press Ctrl+Alt+T to enter terminal.`
 
-Type "shell" without the quotes and hit enter.
+`Type "shell" without the quotes and hit enter.`
 
 ## Download crouton and install to bin
 
-sudo mkdir /usr/local/bin
+`sudo mkdir /usr/local/bin`
 
-sudo curl -L -# -o /usr/local/bin/crouton https://github.com/dnschneid/crouton/raw/master/installer/crouton && sudo chmod +x /usr/local/bin/crouton
+`sudo curl -L -# -o /usr/local/bin/crouton https://github.com/dnschneid/crouton/raw/master/installer/crouton && sudo chmod +x /usr/local/bin/crouton`
 
 ## Download Ubuntu 18.04 release name BIONIC and create a bootstrap to save time.
 
-sudo crouton -r bionic -d -f ~/Downloads/mybootstrap.tar.bz2 (dl bootstrap)
+`sudo crouton -r bionic -d -f ~/Downloads/mybootstrap.tar.bz2 (dl bootstrap)`
 
 ## Autostart Crouton when Chromebook starts
 
-sudo cp ~/Downloads/crouton.conf /etc/init/
+`sudo cp ~/Downloads/crouton.conf /etc/init/`
 
 sudo cp ~/Downloads/crouton.init /usr/local/
 
