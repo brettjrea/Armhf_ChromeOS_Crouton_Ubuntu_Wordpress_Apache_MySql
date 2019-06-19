@@ -1,5 +1,5 @@
 # Chromebook-Crouton-Ubuntu-18.04-LAMP-WP
-Ubuntu 18.04 based LAMP stack for crouton with optional WordPress target.
+Instructions and files for an Ubuntu 18.04 based LAMP stack for crouton with WordPress (Optional).
 Created from a need to have a development environment on a chromebook with ARM processor, but should work anywhere crouton does.
 
 ## The following instructions are written and depend on the repositories files being found in the ~/Downloads folder.
