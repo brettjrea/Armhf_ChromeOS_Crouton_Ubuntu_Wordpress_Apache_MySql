@@ -29,7 +29,7 @@ Type `shell` hit enter.
 *When prompted create a username and password.*
 
 #### Install some basic software while in crouton and then exit.
-`sudo apt install xterm xinit`
+`sudo apt install xterm xinit -y`
 
 #### Install additional targets.
 `sudo crouton -n bionic -t xiwi,extension,keyboard -u`
