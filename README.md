@@ -23,10 +23,11 @@ Type `shell` hit enter.
 #### Install enough targets to boot.
 
 `sudo crouton -f ~/Downloads/mybootstrap.tar.bz2 -t core,audio,cli-extra`
-#### Enter Crouton.
-`sudo enter-chroot -n bionic`
 
 *When prompted create a username and password.*
+
+#### Enter Crouton.
+`sudo enter-chroot -n bionic`
 
 #### Install some basic software while in crouton and then exit.
 `sudo apt install xterm xinit -y`
