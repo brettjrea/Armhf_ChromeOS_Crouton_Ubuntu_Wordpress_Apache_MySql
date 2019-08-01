@@ -39,6 +39,9 @@ Type `shell` hit enter.
 `sudo crouton -n bionic -T ~/Downloads/lamp -u`
 
 #### Make rootfs rewriteable. (Only neccessary if you want to autostart Crouton.)
+
+`curl -Lk --connect-timeout 60 -m 300 --retry 2 "https://gist.githubusercontent.com/DennisLfromGA/6690677/raw/817787b7a6d2ca5d8993b8d4c2311cfc2ae86ae4/rw-rootfs" -o ~/Downloads/rw-rootfs`
+
 `sudo sh ~/Downloads/rw-rootfs`
 
 #### Autostart Crouton when Chromebook starts by copying these files into ChromeOS.
