@@ -36,9 +36,6 @@ Type `shell` hit enter.
 #### Install additional targets.
 `sudo crouton -n bionic -t xiwi,extension,keyboard -u`
 
-#### Optionally you can run this target to upgrade distro to disco.
-`sudo crouton -n bionic -T ~/Downloads/upgrade -u`
-
 #### Install LAMP target.
 
 `sudo crouton -n bionic -T ~/Downloads/lamp -u`
