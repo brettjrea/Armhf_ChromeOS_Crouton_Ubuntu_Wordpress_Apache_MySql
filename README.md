@@ -31,6 +31,7 @@ Type `shell` hit enter.
 
 #### Install some basic software while in crouton and then exit.
 `sudo apt install xterm xinit -y`
+
 `exit`
 
 #### Install additional targets.
