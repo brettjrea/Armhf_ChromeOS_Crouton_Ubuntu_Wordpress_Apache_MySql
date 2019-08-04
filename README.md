@@ -59,9 +59,6 @@ Type `shell` hit enter.
 ```
 alias bionic="sudo enter-chroot -n bionic"
 
-alias putty="sudo startxiwi -n bionic -T putty"
-
-alias filezilla="sudo startxiwi -n bionic -T filezilla"
 ```
 
 #### Backup
