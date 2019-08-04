@@ -1,0 +1,51 @@
+#!/bin/sh -e
+# Copyright (c) 2016 The crouton Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+REQUIRES=''
+DESCRIPTION='Basic installation of WordPress on a LAMP stack'
+HOSTBIN='wp'
+CHROOTBIN='croutonpowerd'
+. "${TARGETSDIR:="$PWD"}/common"
+
+###Download & Install WP-CLI.
+if [ ! -f '/usr/local/bin/wp' ]; then
+	wget -O /tmp/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+	chmod +x /tmp/wp-cli.phar
+	mv /tmp/wp-cli.phar /usr/local/bin/wp
+fi
+
+###Start Mysql
+service mysql start
+
+###Download WP.
+wp core download --path=/var/www/html/wordpress/ --allow-root
+
+###Create wp-config.php
+wp config create --path=/var/www/html/wordpress/ --dbhost=localhost --dbname=wordpress --dbuser=root --dbpass=password --allow-root
+
+###Create MySql DB.
+wp db create --path=/var/www/html/wordpress/ --allow-root
+
+###Install WP.
+wp core install --path=/var/www/html/wordpress/ --url=http://localhost/wordpress/ --title=Example --admin_user=root --admin_password=password --admin_email=info@example.com --allow-root
+
+###Install WP Theme Understrap
+wp theme install --path=/var/www/html/wordpress/ understrap --allow-root
+
+###Create and move to directory for Understrap-child.
+mkdir /var/www/html/wordpress/wp-content/themes/understrap-child/
+cd /var/www/html/wordpress/wp-content/themes/understrap-child/
+
+###Fix permissions
+chown -R www-data /var/www/html/wordpress/
+
+###Create wordpress.conf to configure access to directory /var/www/html/wordpress/, enable & reload.
+cat << EOF > /etc/apache2/sites-available/wordpress.conf
+<Directory /var/www/html/wordpress/>
+AllowOverride All
+Require all granted
+</Directory>
+EOF
+chmod u+x /etc/apache2/sites-available/wordpress.conf
+a2ensite wordpress.conf
