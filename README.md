@@ -56,9 +56,7 @@ Type `shell` hit enter.
 
 #### Add Common Alias to bash file.
 `sudo nano ~/.bashrc`
-```
-alias bionic="sudo enter-chroot -n bionic"
-
+```alias bionic="sudo enter-chroot -n bionic"
 ```
 
 #### Backup
