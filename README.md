@@ -31,9 +31,13 @@ Type `shell` hit enter.
 
 #### Install some basic software while in crouton and then exit.
 `sudo apt install xterm xinit -y`
+`exit`
 
 #### Install additional targets.
 `sudo crouton -n bionic -t xiwi,extension,keyboard -u`
+
+#### Optionally you can run this target to upgrade distro to disco.
+`sudo crouton -n bionic -T ~/Downloads/upgrade -u`
 
 #### Install LAMP target.
 
