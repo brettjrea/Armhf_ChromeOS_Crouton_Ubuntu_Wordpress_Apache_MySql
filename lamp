@@ -1,0 +1,122 @@
+#!/bin/sh -e
+# Copyright (c) 2016 The crouton Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+REQUIRES=''
+DESCRIPTION='Installation of lamp stack on ubuntu.'
+HOSTBIN='lamp'
+CHROOTBIN='croutonpowerd'
+. "${TARGETSDIR:="$PWD"}/common"
+#!/bin/bash
+
+### Start by updating, upgrading, cleaning.
+apt update && apt upgrade -y
+apt autoremove -y
+
+###Install Apache
+apt install apache2 -y
+
+###Enable Rewrite Module
+a2enmod rewrite
+
+###Create & Enable config to fix FQDN by setting ServerName to localhost and also configure access to directory /var/www/html/.
+cat << EOF > /etc/apache2/conf-available/local.conf
+ServerName localhost
+<Directory /var/www/html/>
+AllowOverride All
+Require all granted
+</Directory>
+EOF
+chmod u+x /etc/apache2/conf-available/local.conf
+a2enconf local.conf
+
+###Disable default dir mod and create mod that tells Apache to search for index.php first and enable.
+a2dismod dir -f
+cat << EOF > /etc/apache2/mods-available/phpdir.load
+LoadModule dir_module /usr/lib/apache2/modules/mod_dir.so
+EOF
+chmod u+x /etc/apache2/mods-available/phpdir.load
+cat << EOF > /etc/apache2/mods-available/phpdir.conf
+<IfModule mod_dir.c>
+DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+EOF
+chmod u+x /etc/apache2/mods-available/phpdir.conf
+a2enmod phpdir
+
+###Configure & Install MySQL
+mysql_config_file="/etc/mysql/my.cnf"
+echo "mysql-server mysql-server/root_password password password" | sudo debconf-set-selections
+echo "mysql-server mysql-server/root_password_again password password" | sudo debconf-set-selections
+install mysql-server -y
+sed -i "s/bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" ${mysql_config_file}
+usermod -d /var/lib/mysql/ mysql
+service mysql start
+
+# Allow root access from any host
+echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION" | mysql -u root --password=password
+echo "GRANT PROXY ON ''@'' TO 'root'@'%' WITH GRANT OPTION" | mysql -u root --password=password
+
+###Deny anonymous users.
+echo "DELETE FROM mysql.user WHERE User=''" | mysql -u root --password=password
+
+###Delete test db.
+echo "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'" | mysql -u root --password=password
+
+###Deny remote root login.
+###echo "DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')" | mysql -u root --password=password
+
+service mysql restart
+
+
+###Install PHP & MODULES
+apt install php php-curl php-gd php-intl php-mbstring php-mysql php-soap php-xml php-xmlrpc php-zip -y
+
+###Create info.php
+cat << EOF > /var/www/html/info.php
+<?php
+phpinfo();
+?>
+EOF
+chmod u+x /var/www/html/info.php
+
+###Create & Configure php.ini
+cat << EOF > /etc/php/7.2/apache2/php.ini
+error_reporting = E_COMPILE_ERROR | E_RECOVERABLE_ERROR | E_ERROR | E_CORE_ERROR
+max_input_time = 30
+error_log = /var/log/php/error.log
+upload_max_filesize = 64M
+post_max_size = 32M
+memory_limit = 16M
+EOF
+chmod u+x /etc/php/7.2/apache2/php.ini
+
+###Create PHP Log assign ownership.
+mkdir /var/log/php
+chown www-data /var/log/php
+
+### Set up rc.local to start apache, mysql
+cat << EOF > /etc/rc.local
+#!/bin/sh -e
+###Start this way to avoid error with systemctl and services
+apachectl -f /etc/apache2/apache2.conf
+/etc/init.d/mysql start
+export HOME=/etc/mysql
+umask 007
+[ -d /var/run/mysqld ] || install -m 755 -o mysql -g root -d /var/run/mysqld
+/usr/sbin/mysqld &
+exit 0
+EOF
+chmod u+x /etc/rc.local
+
+### Install Common Utilities
+apt install nano net-tools zip -y
+
+### Install Common Fetchers
+apt install curl git wget -y
+
+### Install Common Compilers
+apt install g++ gcc make -y
+
+### Install Node.JS and NPM
+apt install nodejs npm -y
