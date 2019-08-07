@@ -59,6 +59,15 @@ Type `shell` hit enter.
 
 `sudo cp ~/Downloads/crouton.init /usr/local/`
 
+#### Install Chromebrew and add nano utility.
+`curl -Ls https://raw.github.com/skycocker/chromebrew/master/install.sh | bash`
+
+`crew update`
+
+`crew upgrade`
+
+`crew install nano`
+
 #### Add Common Alias to bash file.
 `sudo nano ~/.bashrc`
 
