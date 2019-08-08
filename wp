@@ -37,7 +37,7 @@ wp theme install --path=/var/www/html/wordpress/ understrap --allow-root
 cd /var/www/html/wordpress/wp-content/themes/
 
 ###Download and Unzip Understrap-child.
-sudo wget https://github.com/understrap/understrap-child/archive/master.zip -O temp.zip;
+wget https://github.com/understrap/understrap-child/archive/master.zip -O temp.zip;
 unzip temp.zip;
 rm temp.zip
 
