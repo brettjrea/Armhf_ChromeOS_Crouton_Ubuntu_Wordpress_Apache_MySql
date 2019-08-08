@@ -33,7 +33,7 @@ wp core install --path=/var/www/html/wordpress/ --url=http://localhost/wordpress
 ###Install WP Theme Understrap
 wp theme install --path=/var/www/html/wordpress/ understrap --allow-root
 
-###Create and move to directory for Understrap-child.
+###Move to directory themes.
 cd /var/www/html/wordpress/wp-content/themes/
 
 ###Download and Unzip Understrap-child.
