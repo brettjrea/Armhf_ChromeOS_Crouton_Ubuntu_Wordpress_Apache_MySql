@@ -1,6 +1,7 @@
 ## Chromebook-Crouton-Ubuntu-18.04-LAMP
 Instructions and files for an Ubuntu 18.04 based LAMP stack for [crouton](https://github.com/dnschneid/crouton).
 Created from a desire to have a development environment on a chromebook with an ARM processor, but should work anywhere crouton does.
+Scripts are located at my [GitHub](https://github.com/Techintheclouds/ChromeOS-Crouton-Ubuntu-LAMP-Wordpress).
 
 ### The following instructions are written and depend on the repositories files being found in the ~/Downloads folder.
 
