@@ -5,6 +5,9 @@ Scripts are located at my [GitHub](https://github.com/Techintheclouds/ChromeOS-C
 
 ### The following instructions are written and depend on the repositories files being found in the ~/Downloads folder.
 
+### Put Chromebook in developer mode.
+For my model it was `Esc + Refresh` and once you are at the recovery screen press `Ctrl + D` and `enter` to confirm.
+
 #### Open terminal and enter shell.
 
 Press `Ctrl+Alt+T` to enter terminal.
